@@ -48,10 +48,14 @@ Shader "CS0101/01MiniShader"
                 return o;
             }
 
-            float4 frag(v2f i) : SV_Target
+            // float = 32; 坐标点使用
+            // half = 16; uv 和 向量使用
+            // fixed = 8; 颜色使用
+
+            fixed4 frag(v2f i) : SV_Target
             {
                 // return float4(0.5, 1.0, 0.5, 1.0);
-                float4 col = tex2D(_MainTex, i.uv);
+                fixed4 col = tex2D(_MainTex, i.uv);
                 return col;
             }
             
