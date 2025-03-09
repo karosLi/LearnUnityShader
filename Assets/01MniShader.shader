@@ -37,11 +37,12 @@ Shader "CS0101/01MiniShader"
             {
                 v2f o;
 
-                float4 pos_wolrd = mul(unity_ObjectToWorld, v.vertex);// 模型空间转世界空间
-                float4 pos_view = mul(UNITY_MATRIX_V, pos_wolrd);// 世界空间转摄像机空间
-                float4 pos_clip = mul(UNITY_MATRIX_P, pos_view);// 摄像机空间转裁剪空间
+                // float4 pos_wolrd = mul(unity_ObjectToWorld, v.vertex);// 模型空间转世界空间
+                // float4 pos_view = mul(UNITY_MATRIX_V, pos_wolrd);// 世界空间转摄像机空间
+                // float4 pos_clip = mul(UNITY_MATRIX_P, pos_view);// 摄像机空间转裁剪空间
+                // o.pos = pos_clip;
 
-                o.pos = pos_clip;
+                o.pos = mul(unity_MatrixMVP, v.vertex);
                 o.uv = v.uv * _MainTex_ST.xy + _MainTex_ST.zw;
 
                 return o;
